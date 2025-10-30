@@ -2,7 +2,7 @@
 🚀 Personal developer portfolio built with HTML, CSS, and JavaScript — modern, responsive,  Deployed on Verce
 # 💼 My Developer Portfolio
 
-A modern, responsive **personal portfolio website** built using **HTML, CSS, and JavaScript**, inspired by [Tasir Mahtab Haque’s portfolio](https://tasir-mahtab-haque.vercel.app/).  
+A modern, responsive **personal portfolio website** built using **HTML, CSS, and JavaScript**.  
 Showcasing my projects, skills, and professional background with a clean, futuristic design and smooth animations.
 
 ---
