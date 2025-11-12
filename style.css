@@ -712,61 +712,337 @@ section {
     gap: 50px;
 }
 
-.skill-category {
-    margin-bottom: 30px;
-}
-
-.category-title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: var(--text-dark);
+/* Skills Section */
+.skills {
+    background: linear-gradient(135deg, rgba(8, 49, 74, 0.3) 0%, rgba(139, 92, 246, 0.1) 100%);
     position: relative;
-    padding-left: 15px;
-}
-
-.category-title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 5px;
-    height: 20px;
-    background-color: var(--primary-color);
-    border-radius: 2px;
-}
-
-.skill-item {
-    margin-bottom: 20px;
-}
-
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.skill-name {
-    font-weight: 500;
-}
-
-.skill-percentage {
-    color: var(--text-light);
-}
-
-.skill-bar {
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
     overflow: hidden;
 }
 
-.skill-progress {
-    height: 100%;
-    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-    border-radius: 4px;
-    width: 0;
-    transition: width 1.5s ease-in-out;
+.skills::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.skills::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.skills-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.skill-category {
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.6) 0%, rgba(30, 30, 50, 0.4) 100%);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+.skill-category:hover {
+    border-color: rgba(0, 217, 255, 0.5);
+    background: linear-gradient(135deg, rgba(20, 30, 50, 0.8) 0%, rgba(40, 30, 60, 0.6) 100%);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.category-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    box-shadow: 0 8px 20px rgba(0, 217, 255, 0.3);
+    position: relative;
+}
+
+.category-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    opacity: 0;
+    transition: var(--transition);
+    filter: blur(10px);
+}
+
+.skill-category:hover .category-icon::before {
+    opacity: 0.5;
+}
+
+.category-icon i {
+    font-size: 1.8rem;
+    color: var(--bg-dark);
+    position: relative;
+    z-index: 1;
+}
+
+.category-info {
+    flex: 1;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    color: var(--text);
+    margin: 0 0 5px 0;
+    font-weight: 700;
+}
+
+.category-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.skill-tag {
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: default;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.skill-tag::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1), transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.skill-tag:hover::before {
+    transform: translateX(100%);
+}
+
+.skill-tag:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Individual tag colors with gradients */
+.tag-python {
+    background: linear-gradient(135deg, #3776ab, #ffd43b);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(55, 118, 171, 0.3);
+    border-color: rgba(55, 118, 171, 0.5);
+}
+
+.tag-c {
+    background: linear-gradient(135deg, #00549e, #66aadd);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 84, 158, 0.3);
+    border-color: rgba(0, 84, 158, 0.5);
+}
+
+.tag-cpp {
+    background: linear-gradient(135deg, #00599c, #0099ff);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 153, 255, 0.3);
+    border-color: rgba(0, 153, 255, 0.5);
+}
+
+.tag-web {
+    background: linear-gradient(135deg, #e34c26, #ff9e64);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(227, 76, 38, 0.3);
+    border-color: rgba(227, 76, 38, 0.5);
+}
+
+.tag-react {
+    background: linear-gradient(135deg, #61dafb, #087ea4);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(97, 218, 251, 0.3);
+    border-color: rgba(97, 218, 251, 0.5);
+}
+
+.tag-css {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+    border-color: rgba(56, 189, 248, 0.5);
+}
+
+.tag-node {
+    background: linear-gradient(135deg, #68a063, #92c446);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(104, 160, 99, 0.3);
+    border-color: rgba(104, 160, 99, 0.5);
+}
+
+.tag-pandas {
+    background: linear-gradient(135deg, #150458, #e70488);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(21, 4, 88, 0.3);
+    border-color: rgba(21, 4, 88, 0.5);
+}
+
+.tag-numpy {
+    background: linear-gradient(135deg, #013243, #4ba3c3);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(1, 50, 67, 0.3);
+    border-color: rgba(1, 50, 67, 0.5);
+}
+
+.tag-sklearn {
+    background: linear-gradient(135deg, #f7931e, #ffb81c);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(247, 147, 30, 0.3);
+    border-color: rgba(247, 147, 30, 0.5);
+}
+
+.tag-matplotlib {
+    background: linear-gradient(135deg, #11557c, #00a9ce);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(17, 85, 124, 0.3);
+    border-color: rgba(17, 85, 124, 0.5);
+}
+
+.tag-opencv {
+    background: linear-gradient(135deg, #5c3ee1, #73b9d4);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(92, 62, 225, 0.3);
+    border-color: rgba(92, 62, 225, 0.5);
+}
+
+.tag-pytorch {
+    background: linear-gradient(135deg, #ee4c2c, #ffffff);
+    color: #ee4c2c;
+    box-shadow: 0 5px 15px rgba(238, 76, 44, 0.3);
+    border-color: rgba(238, 76, 44, 0.5);
+}
+
+.tag-tensorflow {
+    background: linear-gradient(135deg, #ff6f00, #ffa500);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(255, 111, 0, 0.3);
+    border-color: rgba(255, 111, 0, 0.5);
+}
+
+.tag-office {
+    background: linear-gradient(135deg, #2b579a, #7fb3d5);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(43, 87, 154, 0.3);
+    border-color: rgba(43, 87, 154, 0.5);
+}
+
+.tag-git {
+    background: linear-gradient(135deg, #f1502f, #ff6b3d);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(241, 80, 47, 0.3);
+    border-color: rgba(241, 80, 47, 0.5);
+}
+
+.tag-github {
+    background: linear-gradient(135deg, #24292f, #58a6ff);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(36, 41, 47, 0.3);
+    border-color: rgba(36, 41, 47, 0.5);
+}
+
+.tag-pycharm {
+    background: linear-gradient(135deg, #087cfa, #30b0c7);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(8, 124, 250, 0.3);
+    border-color: rgba(8, 124, 250, 0.5);
+}
+
+.tag-jupyter {
+    background: linear-gradient(135deg, #f37726, #ffa500);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(243, 119, 38, 0.3);
+    border-color: rgba(243, 119, 38, 0.5);
+}
+
+.tag-vscode {
+    background: linear-gradient(135deg, #0078d4, #00d4ff);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 120, 212, 0.3);
+    border-color: rgba(0, 120, 212, 0.5);
+}
+
+.tag-kaggle {
+    background: linear-gradient(135deg, #20b2aa, #20b2aa);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(32, 178, 170, 0.3);
+    border-color: rgba(32, 178, 170, 0.5);
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .skill-category {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.6) 100%);
+    border-color: rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="light"] .skill-category:hover {
+    border-color: rgba(2, 132, 199, 0.5);
+    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.15);
+}
+
+[data-theme="light"] .category-title {
+    color: #1e293b;
+}
+
+[data-theme="light"] .category-subtitle {
+    color: #64748b;
 }
 
 .projects, .publications {
@@ -1307,7 +1583,7 @@ section {
         gap: 40px;
     }
     
-    .skills-container {
+    .skills-wrapper {
         grid-template-columns: 1fr;
         gap: 40px;
     }
@@ -1476,6 +1752,45 @@ section {
     
     .category-title {
         font-size: 1.3rem;
+    }
+
+    .skills-wrapper {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .skill-category {
+        padding: 20px;
+    }
+
+    .category-header {
+        gap: 12px;
+    }
+
+    .category-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .category-icon i {
+        font-size: 1.4rem;
+    }
+
+    .category-title {
+        font-size: 1.1rem;
+    }
+
+    .category-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .skill-tags {
+        gap: 10px;
+    }
+
+    .skill-tag {
+        padding: 8px 14px;
+        font-size: 0.85rem;
     }
     
     .publication-title {
