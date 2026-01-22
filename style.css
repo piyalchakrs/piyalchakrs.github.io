@@ -1150,6 +1150,7 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
+    width: 100%;
 }
 
 .project-card {
@@ -1158,6 +1159,7 @@ section {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(2,6,23,0.6);
     transition: var(--transition);
+    min-height: 100%;
 }
 
 .project-card:hover {
