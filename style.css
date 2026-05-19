@@ -1130,6 +1130,7 @@ section {
 .publication-links {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .publication-link {
