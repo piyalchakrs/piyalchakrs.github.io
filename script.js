@@ -96,7 +96,7 @@ function initAnimations() {
     
     // Typing effect for hero title
     const heroTitle = document.querySelector('.hero-title');
-    const text = "Data Science & ML Enthusiast";
+    const text = "VLSI, Electronics & ML Enthusiast";
     let i = 0;
     
     function typeWriter() {
